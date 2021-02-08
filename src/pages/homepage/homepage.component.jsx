@@ -11,6 +11,7 @@ import { toggleHamburgerMenu } from '../../redux/hamburger-menu/hamburger-menu.a
 import Hamburger from 'hamburger-react';
 import LeftMenu from '../../components/left-menu/left-menu.component';
 import Fonts from '../../components/fonts/fonts.component';
+import BurgerMenu from '../../components/burger-menu/burger-menu.component';
 
 const Homepage = () => {
   const [isLargerThan1064] = useMediaQuery("(min-width: 1064px)");
@@ -19,6 +20,25 @@ const Homepage = () => {
   return (
     <>
       <Fonts />
+      <Circle
+        boxShadow="base"
+        size="3rem"
+        bg="white"
+        position="absolute"
+        right="0"
+        mt="1rem"
+        mr="1rem"
+        zIndex="3"
+      >
+        <Hamburger
+          color="#3182ce"
+          size="20"
+          zIndex="3"
+          toggled={isOpen}
+          toggle={() => dispatch(toggleHamburgerMenu())}
+        />
+      </Circle>
+      <BurgerMenu />
       <LeftMenu>
         <GridItem 
           h="100vh"
@@ -28,24 +48,6 @@ const Homepage = () => {
           bgRepeat="no-repeat"
         >
           <Flex direction="column" align="center">
-            <Circle
-              boxShadow="base"
-              size="3rem"
-              bg="white"
-              position="absolute"
-              right="0"
-              mt="1rem"
-              mr="1rem"
-              zIndex="2"
-              >
-                <Hamburger
-                  color="#3182ce"
-                  size="20"
-                  zIndex="2"
-                  toggled={isOpen}
-                  toggle={() => dispatch(toggleHamburgerMenu())}
-                />
-              </Circle>
             { isLargerThan1064 ? 
               <Text
               fontFamily="Lato"
