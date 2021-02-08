@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import hamburgerMenuReducer from './hamburger-menu/hamburger-menu.reducer';
+import burgerMenuReducer from './burger-menu/burger-menu.reducer';
 
 export default combineReducers({
-  hamburgerMenu: hamburgerMenuReducer
+  burgerMenu: burgerMenuReducer
 });

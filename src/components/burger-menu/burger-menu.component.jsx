@@ -1,11 +1,11 @@
 import { elastic as Menu } from 'react-burger-menu';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './burger-menu.styles';
 import { useSelector } from 'react-redux';
 import { Grid, GridItem, Image, Spacer, Flex, Text } from '@chakra-ui/react';
 
 const BurgerMenu = () => {
-  const isOpen = useSelector(state => state.hamburgerMenu.isOpen);
+  const isOpen = useSelector(state => state.burgerMenu.isOpen);
   return (
     <Menu 
       customBurgerIcon={false}

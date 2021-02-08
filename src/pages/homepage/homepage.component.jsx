@@ -7,7 +7,7 @@ import {
   useMediaQuery
 } from '@chakra-ui/react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleHamburgerMenu } from '../../redux/hamburger-menu/hamburger-menu.actions';
+import { toggleHamburgerMenu } from '../../redux/burger-menu/burger-menu.actions';
 import Hamburger from 'hamburger-react';
 import LeftMenu from '../../components/left-menu/left-menu.component';
 import Fonts from '../../components/fonts/fonts.component';
@@ -15,7 +15,7 @@ import BurgerMenu from '../../components/burger-menu/burger-menu.component';
 
 const Homepage = () => {
   const [isLargerThan1064] = useMediaQuery("(min-width: 1064px)");
-  const isOpen = useSelector(state => state.hamburgerMenu.isOpen);
+  const isOpen = useSelector(state => state.burgerMenu.isOpen);
   const dispatch = useDispatch();
   return (
     <>

@@ -1,4 +1,4 @@
-import { TOGGLE_HAMBURGER } from './hamburger-menu.constants';
+import { TOGGLE_MENU } from './burger-menu.constants';
 
 const initialState = {
   isOpen: false
@@ -6,7 +6,7 @@ const initialState = {
 
 const hamburgerMenuReducer = (state=initialState, action={}) => {
   switch (action.type) {
-    case TOGGLE_HAMBURGER:
+    case TOGGLE_MENU:
       return { ...state, isOpen: !state.isOpen };
     default:
       return state;
