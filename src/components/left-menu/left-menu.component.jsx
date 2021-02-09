@@ -1,14 +1,10 @@
-import { Grid, GridItem, Image, Flex, Spacer } from '@chakra-ui/react';
+import { Box, Image, Flex, Spacer } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const LeftMenu = ({ children }) => {
   return (
-    <Grid
-    h="100vh"
-    templateRows="1fr"
-    templateColumns="3.5rem 1fr"
-  >
-    <GridItem colSpan="1" h="100vh" w="100%" bg="white" boxShadow="xl" zIndex="1">
+    <>
+    <Box h="100vh" w="3.5rem" bg="white" boxShadow="xl" zIndex="1" position="fixed" left="0" top="0">
       <Flex direction="column" align="center">
         <Link to="/">
           <Image
@@ -48,9 +44,9 @@ const LeftMenu = ({ children }) => {
           </Link>
         </Flex>
       </Flex>
-    </GridItem>
+    </Box>
     { children }
-  </Grid>
+    </>
   );
 }
 
