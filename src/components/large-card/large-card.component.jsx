@@ -42,15 +42,20 @@ const LargeCard = ({ title, path, imageUrl, price, cols, size }) => {
               >
                 Lorem ipsum dolor sit.
               </Text>
-              <Text
-                mt="0.5rem"
-                fontSize="sm"
-                fontFamily="Lato"
-                fontWeight="700"
-                color="blue"
-              >
-                ${ price }
-              </Text>
+              {
+                price ?
+                  <Text
+                  mt="0.5rem"
+                  fontSize="sm"
+                  fontFamily="Lato"
+                  fontWeight="700"
+                  color="blue"
+                >
+                  ${ price }
+                </Text>
+                :
+                <></>
+              }
             </Box>
           </Center>
         </Center>

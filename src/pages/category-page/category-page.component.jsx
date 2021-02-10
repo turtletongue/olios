@@ -73,9 +73,11 @@ const CategoryPage = () => {
                 price: "69",
                 size: "sm",
                 cols: "1",
-                name: "Red Seat",
+                title: "Red Seat",
                 imageUrl: "https://i.ibb.co/sV1GNFK/red-seat.png",
-                likes: 0
+                likes: 0,
+                oldPrice: '70',
+                description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, debitis.'
               }]}}));
             }}
             mt="2rem"

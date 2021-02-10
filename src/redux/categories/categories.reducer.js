@@ -11,47 +11,57 @@ const initialState = {
         {
           id: "1",
           price: "45",
+          oldPrice: "60",
           size: "sm",
           cols: "1",
           title: "Red Seat",
           imageUrl: "https://i.ibb.co/sV1GNFK/red-seat.png",
-          likes: 0
+          likes: 0,
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
           id: "2",
           price: "350",
+          oldPrice: "400",
           size: "lg",
           cols: "3",
           title: "White Table",
           imageUrl: "https://i.ibb.co/VLTptzz/white-table.png",
-          likes: 0
+          likes: 0,
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
           id: "3",
           price: "35",
+          oldPrice: "40",
           size: "sm",
           cols: "1",
           title: "Blue Seat",
           imageUrl: "https://i.ibb.co/FzvQVdG/blue-seat.png",
-          likes: 0
+          likes: 0,
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
           id: "4",
           price: "120",
+          oldPrice: "400",
           size: "md",
           cols: "2",
           title: "Modern Bed",
           imageUrl: "https://i.ibb.co/2y5dbd3/modern-bed.png",
-          likes: 0
+          likes: 0,
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
           id: "5",
           price: "50",
+          oldPrice: "100",
           size: "sm",
           cols: "1",
           title: "Dark Seat",
           imageUrl: "https://i.ibb.co/Hg5922r/dark-seat.png",
-          likes: 0
+          likes: 0,
+          description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         }
       ]
     },
