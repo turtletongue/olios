@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import {
   Box,
-  Icon,
   Flex,
   Text,
   Image,
@@ -11,7 +10,6 @@ import {
   Button,
   useMediaQuery
 } from '@chakra-ui/react';
-import { AiOutlineHeart } from 'react-icons/ai';
 import CategoryLink from '../../components/category-link/category-link.component';
 import CardWrapper from '../../components/card-wrapper/card-wrapper.component';
 import { useSelector } from 'react-redux';
@@ -23,6 +21,7 @@ const ProductPage = () => {
         .values(state.categories.currentCategories)
         .find(category => category.pathName === categoryPath)
   );
+  console.log(category.name);
   const product = category.products.find(product => product.id === productId);
   const [isLessThan850] = useMediaQuery("(max-width: 850px)");
   return (
@@ -30,30 +29,14 @@ const ProductPage = () => {
       {
       product ? 
       <Flex direction={isLessThan850 ? "column" : "row"} ml="3.5rem">
-        <Box
+        <Center
           bgColor="white"
           boxShadow="lg"
           w={isLessThan850 ? "100%" : "40%"}
           h={isLessThan850 ? "auto" : "100vh"}
         >
-          <Flex w="100%" p="2rem" justify={isLessThan850 ? "start" : "flex-end"} align="center">
-            <Text
-              fontSize="0.9rem"
-              fontFamily="Lato"
-            >{ product.likes }</Text>
-            <Icon
-              as={AiOutlineHeart}
-              w={5}
-              h={5}
-              ml="0.3rem"
-              color="pink.300"
-              cursor="pointer"
-            />
-          </Flex>
-          <Center w="100%" mt={isLessThan850 ? "0" : "4rem"}>
-            <Image src={product.imageUrl} w="65%" alt={product.name} />
-          </Center>
-        </Box>
+          <Image src={product.imageUrl} w="65%" alt={product.name} />
+        </Center>
         <Box w={isLessThan850 ? "100%" : "60%"}>
           <Box w="100%" h="70%" bgColor="#f0f0f0">
             <Box w={isLessThan850 ? "100%" : "85%"} p={isLessThan850 ? "1rem" : "4rem"}>

@@ -6,6 +6,7 @@ import LeftMenu from './components/left-menu/left-menu.component';
 import Fonts from './components/fonts/fonts.component';
 import ProductPage from './pages/product-page/product-page.component';
 import Search from './pages/search/search.component';
+import Basket from './pages/basket/basket.component';
 
 const App = () => {
   return (
@@ -25,6 +26,9 @@ const App = () => {
           </Route>
           <Route path="/search">
             <Search />
+          </Route>
+          <Route path="/basket">
+            <Basket />
           </Route>
         </Switch>
       </LeftMenu>
