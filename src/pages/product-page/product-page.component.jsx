@@ -6,7 +6,11 @@ import {
   Image,
   Center,
   Spacer,
-  Input,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
   Button,
   useMediaQuery
 } from '@chakra-ui/react';
@@ -107,20 +111,28 @@ const ProductPage = () => {
                     >
                       QUANTITY
                     </Text>
-                    <Input
-                      borderRadius="50px"
-                      bgColor="white"
-                      w="4rem"
-                      h="2rem"
-                      defaultValue="1"
-                    />
-                    <Button ml="1rem" colorScheme="blue" borderRadius="50px" h="2rem">
+                    <Flex align="center">
+                      <NumberInput
+                        borderRadius="50px"
+                        bgColor="white"
+                        w="4rem"
+                        defaultValue="1"
+                        min={1}
+                      >
+                        <NumberInputField />
+                        <NumberInputStepper>
+                          <NumberIncrementStepper h="1rem" />
+                          <NumberDecrementStepper h="1rem" />
+                        </NumberInputStepper>
+                      </NumberInput>
+                      <Button ml="1rem" colorScheme="blue" borderRadius="50px" h="2rem">
                       <Text
                         fontSize="xs"
                       >
                         ADD TO CART
                       </Text>
                     </Button>
+                    </Flex>
                   </Box>
                 </Flex>
               </Flex>
