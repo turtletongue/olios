@@ -13,7 +13,7 @@ const LargeCard = ({ title, path, imageUrl, price, cols, size }) => {
     <GridItem
       colSpan={cols}
       as={Link}
-      to={`/shop/${path}`}
+      to={path}
     >
       <Flex overflow="hidden" bgColor="white" h="100%">
         <Center w="100%">

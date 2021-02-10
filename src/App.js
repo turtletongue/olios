@@ -5,6 +5,7 @@ import BurgerMenu from './components/burger-menu/burger-menu.component';
 import LeftMenu from './components/left-menu/left-menu.component';
 import Fonts from './components/fonts/fonts.component';
 import ProductPage from './pages/product-page/product-page.component';
+import Search from './pages/search/search.component';
 
 const App = () => {
   return (
@@ -21,6 +22,9 @@ const App = () => {
           </Route>
           <Route path="/shop/:categoryPath/:productId">
             <ProductPage />
+          </Route>
+          <Route path="/search">
+            <Search />
           </Route>
         </Switch>
       </LeftMenu>

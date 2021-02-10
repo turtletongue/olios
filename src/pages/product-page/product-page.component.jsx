@@ -153,7 +153,6 @@ const ProductPage = () => {
                     mini
                     { ...p }
                     key={p.id}
-                    path={`${categoryPath}/${p.id}`}
                     price={false}
                   />
                 })

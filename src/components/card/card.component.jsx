@@ -12,7 +12,7 @@ const Card = ({ title, path, imageUrl, price, cols, mini }) => {
     <GridItem
       colSpan={cols}
       as={Link}
-      to={`/shop/${path}`}
+      to={path}
     >
       <Box overflow="hidden" bgColor="white" p="1rem">
         <Center mb="1rem">

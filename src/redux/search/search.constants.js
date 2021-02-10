@@ -1,0 +1,1 @@
+export const INPUT_CHANGED = 'INPUT_CHANGED';

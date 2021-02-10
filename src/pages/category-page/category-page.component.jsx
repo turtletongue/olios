@@ -20,12 +20,15 @@ const CategoryPage = () => {
       Object.values(state.categories.currentCategories)
         .find(category => category.pathName === categoryPath)
   );
+  console.log(category);
   const categories = useSelector(state => state.categories.currentCategories);
   const [isLessThan800] = useMediaQuery("(max-width: 800px)");
   const dispatch = useDispatch();
   return (
     <>
-      <Center bgColor="#f0f0f0" w="100%" minH="100vh">
+      {
+        category ? 
+        <Center bgColor="#f0f0f0" w="100%" minH="100vh">
         {
           category.products.length > 0 ? 
           <Box
@@ -61,7 +64,6 @@ const CategoryPage = () => {
                     { ...product }
                     cols={isLessThan800 ? 4 : product.cols}
                     key={product.id}
-                    path={`${categoryPath}/${product.id}`}
                   />
               })
             }
@@ -106,6 +108,18 @@ const CategoryPage = () => {
         >NO PRODUCTS FOUND</Text>
         }
       </Center>
+      :
+      <Center w="100%" h="100vh">
+        <Text
+          ml="5.5rem"
+          mt="1.5rem"
+          fontSize="3xl"
+          fontFamily="Lato"
+          fontWeight="700"
+          color="#c1c1c1"
+        >CATEGORY NOT FOUND</Text>
+      </Center>
+    }
     </>
   );
 }
