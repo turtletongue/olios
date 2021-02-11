@@ -16,18 +16,22 @@ import {
 } from '@chakra-ui/react';
 import CategoryLink from '../../components/category-link/category-link.component';
 import CardWrapper from '../../components/card-wrapper/card-wrapper.component';
-import { useSelector } from 'react-redux';
+import { addToBasket } from '../../redux/basket/basket.actions';
+import { changeQuantity } from '../../redux/product/product.actions'
+import { useSelector, useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-const ProductPage = () => {
+const ProductPage = ({ history }) => {
+  const dispatch = useDispatch();
   const { categoryPath, productId } = useParams();
   const category = useSelector(state => 
       Object
         .values(state.categories.currentCategories)
         .find(category => category.pathName === categoryPath)
   );
-  console.log(category.name);
   const product = category.products.find(product => product.id === productId);
   const [isLessThan850] = useMediaQuery("(max-width: 850px)");
+  const quantity = useSelector(state => state.product.quantity);
   return (
     <>
       {
@@ -118,20 +122,38 @@ const ProductPage = () => {
                         w="4rem"
                         defaultValue="1"
                         min={1}
+                        onChange={(value) => dispatch(changeQuantity(value))}
                       >
-                        <NumberInputField />
+                        <NumberInputField
+                          id="quantityField"
+                          value={quantity}
+                        />
                         <NumberInputStepper>
-                          <NumberIncrementStepper h="1rem" />
-                          <NumberDecrementStepper h="1rem" />
+                          <NumberIncrementStepper
+                            h="1rem"
+                          />
+                          <NumberDecrementStepper
+                            h="1rem" 
+                          />
                         </NumberInputStepper>
                       </NumberInput>
-                      <Button ml="1rem" colorScheme="blue" borderRadius="50px" h="2rem">
-                      <Text
-                        fontSize="xs"
+                      <Button
+                        ml="1rem"
+                        colorScheme="blue"
+                        borderRadius="50px"
+                        h="2rem"
+                        onClick={() => {
+                          dispatch(addToBasket({ ...product, quantity }));
+                          dispatch(changeQuantity("1"));
+                          history.push('/basket')
+                        }}
                       >
-                        ADD TO CART
-                      </Text>
-                    </Button>
+                        <Text
+                          fontSize="xs"
+                        >
+                          ADD TO CART
+                        </Text>
+                      </Button>
                     </Flex>
                   </Box>
                 </Flex>
@@ -171,4 +193,4 @@ const ProductPage = () => {
   );
 }
 
-export default ProductPage;
+export default withRouter(ProductPage);

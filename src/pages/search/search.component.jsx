@@ -37,6 +37,8 @@ const Search = () => {
           fontSize="4xl"
           mb="0.5rem"
           onChange={(event) => dispatch(changeInput(event.target.value))}
+          value={input}
+          autoFocus="true"
         />
         <Text
           color="#c1c1c1"
