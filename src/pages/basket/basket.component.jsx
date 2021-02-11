@@ -152,7 +152,7 @@ const Basket = () => {
             textAlign="center"
             fontFamily="Lato"
             fontSize={isLessThan800 ? "xl" : "2xl"}
-            w={isLessThan800 ? "20%" : "15%"}
+            w={isLessThan800 ? "50%" : "15%"}
           >TOTAL: ${totalPrice}</Text>
           <Spacer />
           <StripeButton price={totalPrice} />
