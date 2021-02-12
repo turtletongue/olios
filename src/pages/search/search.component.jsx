@@ -38,7 +38,7 @@ const Search = () => {
           {
             productsFound.map(product => {
               return <SearchResult
-                id={product.id}
+                key={product.id}
                 path={product.path}
                 title={product.title}
                 imageUrl={product.imageUrl}
