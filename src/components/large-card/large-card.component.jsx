@@ -44,7 +44,7 @@ const LargeCard = ({ title, path, imageUrl, price, cols, size }) => {
               </Text>
               {
                 price ?
-                  <Text
+                <Text
                   mt="0.5rem"
                   fontSize="sm"
                   fontFamily="Lato"

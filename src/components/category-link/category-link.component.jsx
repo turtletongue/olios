@@ -10,7 +10,7 @@ const CategoryLink = ({ name, pathName, imageUrl }) => {
     <>
       <GridItem
         as={Link}
-        to={`/shop/${pathName}`}
+        to={`/${pathName}`}
         className="menu-item"
         id={pathName}
         d="inline-flex"

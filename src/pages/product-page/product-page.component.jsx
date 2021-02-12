@@ -14,6 +14,15 @@ import {
   Button,
   useMediaQuery
 } from '@chakra-ui/react';
+import {
+  textProps,
+  notFoundProps,
+  numberInputProps,
+  buttonProps,
+  oldPriceProps,
+  priceProps,
+  descriptionProps
+} from './product-page.props';
 import CategoryLink from '../../components/category-link/category-link.component';
 import CardWrapper from '../../components/card-wrapper/card-wrapper.component';
 import { addToBasket } from '../../redux/basket/basket.actions';
@@ -52,7 +61,7 @@ const ProductPage = ({ history }) => {
                 <Text
                   mb={isLessThan850 ? "1rem" : "0"}
                   fontSize="2xl"
-                  fontFamily="Lato"
+                  {...textProps}
                 >
                   PRODUCTS
                 </Text>
@@ -66,43 +75,24 @@ const ProductPage = ({ history }) => {
               <Text
                 mt={isLessThan850 ? "2rem" : "5rem"}
                 fontSize="4xl"
-                fontFamily="Lato"
                 color="blue"
+                {...textProps}
               >
                 { product.title.toUpperCase() }
               </Text>
-              <Text
-                mt="1rem"
-                maxWidth="20rem"
-                fontSize="sm"
-                color="#c1c1c1"
-                fontFamily="Lato"
-              >
+              <Text {...textProps} {...descriptionProps}>
                 { product.description } 
               </Text>
               <Flex mt="3rem" direction={isLessThan850 ? "column" : "row"}>
                 <Box>
-                  <Text
-                    fontSize="xs"
-                  >
+                  <Text fontSize="xs">
                     COST
                   </Text>
                   <Flex>
-                    <Text
-                      fontWeight="700"
-                      fontSize="2xl"
-                      fontFamily="Lato"
-                      color="blue"
-                    >
+                    <Text {...textProps} {...priceProps}>
                       ${ product.price }
                     </Text>
-                    <Text
-                      ml="0.6rem"
-                      fontWeight="700"
-                      fontSize="0.7rem"
-                      textDecoration="line-through"
-                      fontFamily="Lato"
-                    >
+                    <Text {...textProps} {...oldPriceProps}>
                       ${ product.oldPrice }
                     </Text>
                   </Flex>
@@ -110,47 +100,29 @@ const ProductPage = ({ history }) => {
                 <Spacer />
                 <Flex mt={isLessThan850 ? "2rem" : "0"}>
                   <Box>
-                    <Text
-                      fontSize="xs"
-                    >
+                    <Text fontSize="xs">
                       QUANTITY
                     </Text>
                     <Flex align="center">
                       <NumberInput
-                        borderRadius="50px"
-                        bgColor="white"
-                        w="4rem"
-                        defaultValue="1"
-                        min={1}
+                        {...numberInputProps}
                         onChange={(value) => dispatch(changeQuantity(value))}
                       >
-                        <NumberInputField
-                          id="quantityField"
-                          value={quantity}
-                        />
+                        <NumberInputField id="quantityField" value={quantity} />
                         <NumberInputStepper>
-                          <NumberIncrementStepper
-                            h="1rem"
-                          />
-                          <NumberDecrementStepper
-                            h="1rem" 
-                          />
+                          <NumberIncrementStepper h="1rem" />
+                          <NumberDecrementStepper h="1rem" />
                         </NumberInputStepper>
                       </NumberInput>
                       <Button
-                        ml="1rem"
-                        colorScheme="blue"
-                        borderRadius="50px"
-                        h="2rem"
+                        {...buttonProps}
                         onClick={() => {
                           dispatch(addToBasket({ ...product, quantity }));
                           dispatch(changeQuantity("1"));
                           history.push('/basket')
                         }}
                       >
-                        <Text
-                          fontSize="xs"
-                        >
+                        <Text fontSize="xs">
                           ADD TO CART
                         </Text>
                       </Button>
@@ -179,14 +151,7 @@ const ProductPage = ({ history }) => {
       </Flex>
       :
       <Center h="100vh">
-        <Text
-          ml="5.5rem"
-          mt="1.5rem"
-          fontSize="3xl"
-          fontFamily="Lato"
-          fontWeight="700"
-          color="#c1c1c1"
-        >PRODUCT NOT FOUND</Text>
+        <Text {...textProps} {...notFoundProps}>CATEGORY NOT FOUND</Text>
       </Center>
       }
     </>

@@ -1,69 +1,53 @@
 import {
   Flex,
-  Box,
   Text,
   Button,
   useMediaQuery
 } from '@chakra-ui/react';
+import { withRouter } from 'react-router-dom';
+import FullscreenBackgroundImage from '../../components/fullscreen-background-image/fullscreen-background-image.component';
+import { backgroundTextProps, textProps, buttonProps } from './homepage.props';
 
-const Homepage = () => {
+const Homepage = ({ history }) => {
   const [isLargerThan1064] = useMediaQuery("(min-width: 1064px)");
   const [isLargerThan340] = useMediaQuery("(min-width: 340px)");
   return (
     <>
-      <Box
-        h="100vh"
-        bgImage="url('https://i.ibb.co/JHFs68F/main-photo-background.png')"
-        bgSize="cover"
-        bgPosition="center"
-        bgRepeat="no-repeat"
+      <FullscreenBackgroundImage
+        imageUrl='https://i.ibb.co/JHFs68F/main-photo-background.png'
       >
         <Flex direction="column" align="center">
           { isLargerThan1064 ? 
-            <Text
-            fontFamily="Lato"
-            fontWeight="700"
-            fontSize="15rem"
-            color="#e7e7e7"
-            position="absolute"
-            top="-3rem"
-          >
-            NEWEST
-          </Text>
-          :
-          <></> }
+            <Text {...backgroundTextProps}>NEWEST</Text>
+            :
+            <></>
+          }
           <Flex direction="column" align="center" zIndex="1" ml="3.5rem">
             <Text
               mt="3.5rem"
-              fontFamily="Lato"
-              fontWeight="300"
               fontSize={ isLargerThan340 ? "8xl" : "7xl"}
+              { ...textProps }
             >
               OLIOS
             </Text>
             <Text
-              fontFamily="Lato"
-              fontWeight="300"
               fontSize={ isLargerThan340 ? "xl" : "md"}
+              { ...textProps }
             >
               NEWEST FURNITURE SHOP
             </Text>
             <Button
-              mt="1rem"
-              colorScheme="blue"
-              fontFamily="Lato"
-              fontWeight="300"
-              fontSize="xs"
-              h="2rem"
-              borderRadius="30px"
+              onClick={() => history.push('/search')}
+              { ...textProps }
+              { ...buttonProps }
             >
               VIEW MORE
             </Button>
           </Flex>
         </Flex>
-      </Box>
+      </FullscreenBackgroundImage>
     </>
   );
 }
 
-export default Homepage;
+export default withRouter(Homepage);

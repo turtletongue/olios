@@ -16,7 +16,7 @@ const initialState = {
           cols: "1",
           title: "Red Seat",
           imageUrl: "https://i.ibb.co/sV1GNFK/red-seat.png",
-          path: '/shop/living-room/1',
+          path: '/living-room/1',
           description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
@@ -27,7 +27,7 @@ const initialState = {
           cols: "3",
           title: "White Table",
           imageUrl: "https://i.ibb.co/VLTptzz/white-table.png",
-          path: '/shop/living-room/2',
+          path: '/living-room/2',
           description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
@@ -38,7 +38,7 @@ const initialState = {
           cols: "1",
           title: "Blue Seat",
           imageUrl: "https://i.ibb.co/FzvQVdG/blue-seat.png",
-          path: '/shop/living-room/3',
+          path: '/living-room/3',
           description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
@@ -49,7 +49,7 @@ const initialState = {
           cols: "2",
           title: "Modern Bed",
           imageUrl: "https://i.ibb.co/2y5dbd3/modern-bed.png",
-          path: '/shop/living-room/4',
+          path: '/living-room/4',
           description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         },
         {
@@ -60,7 +60,7 @@ const initialState = {
           cols: "1",
           title: "Dark Seat",
           imageUrl: "https://i.ibb.co/Hg5922r/dark-seat.png",
-          path: '/shop/living-room/5',
+          path: '/living-room/5',
           description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, exercitationem?'
         }
       ]

@@ -18,17 +18,17 @@ const App = () => {
           <Route exact path="/">
             <Homepage />
           </Route>
-          <Route exact path="/shop/:categoryPath">
-            <CategoryPage />
-          </Route>
-          <Route path="/shop/:categoryPath/:productId">
-            <ProductPage />
-          </Route>
           <Route path="/search">
             <Search />
           </Route>
           <Route path="/basket">
             <Basket />
+          </Route>
+          <Route exact path="/:categoryPath">
+            <CategoryPage />
+          </Route>
+          <Route path="/:categoryPath/:productId">
+            <ProductPage />
           </Route>
         </Switch>
       </LeftMenu>

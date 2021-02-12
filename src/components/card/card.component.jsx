@@ -6,6 +6,7 @@ import {
   Text
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { textProps } from './card.props';
 
 const Card = ({ title, path, imageUrl, price, cols, mini }) => {
   return (
@@ -19,19 +20,10 @@ const Card = ({ title, path, imageUrl, price, cols, mini }) => {
           <Image src={imageUrl} h={ mini ? "4rem" : "6rem"} w="auto" alt={title}/>
         </Center>
         <Box>
-          <Text
-            fontSize={mini ? "sm" : "xl"}
-            fontFamily="Lato"
-            fontWeight="400"
-          >
+          <Text fontSize={mini ? "sm" : "xl"} {...textProps}>
             { title.toUpperCase() }
           </Text>
-          <Text
-            fontSize={mini ? "xs" : "sm"}
-            fontFamily="Lato"
-            fontWeight="400"
-            color="#c1c1c1"
-          >
+          <Text fontSize={mini ? "xs" : "sm"} color="#c1c1c1" {...textProps}>
             Lorem ipsum dolor sit.
           </Text>
           {
@@ -39,7 +31,7 @@ const Card = ({ title, path, imageUrl, price, cols, mini }) => {
               <Text
               mt="0.5rem"
               fontSize="sm"
-              fontFamily="Lato"
+              {...textProps}
               fontWeight="700"
               color="blue"
             >

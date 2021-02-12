@@ -1,16 +1,19 @@
 import {
   Box,
   Text,
-  Image,
   Input,
   Center,
-  Flex,
   Grid,
-  GridItem
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import {
+  pageContainerProps,
+  searchInputProps,
+  littleTextProps,
+  blackBoldTextProps
+} from './search.props';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeInput } from '../../redux/search/search.actions';
+import SearchResult from '../../components/search-result/search-result.component';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -21,53 +24,29 @@ const Search = () => {
     product.title.toLowerCase().includes(input.toLowerCase())
   );
   return (
-    <Center
-      ml="0.5rem"
-      h="100vh"
-      bgColor="white"
-    >
-      <Box
-        w="65%"
-        h="75%"
-      >
+    <Center {...pageContainerProps}>
+      <Box w="65%" h="75%">
         <Input 
-          variant="flushed"
-          w="100%"
-          fontFamily="Lato"
-          fontSize="4xl"
-          mb="0.5rem"
           onChange={(event) => dispatch(changeInput(event.target.value))}
           value={input}
-          autoFocus="true"
+          {...searchInputProps}
         />
-        <Text
-          color="#c1c1c1"
-          fontFamily="Lato"
-          fontSize="sm"
-        >
+        <Text {...littleTextProps}>
           Type product that are you looking for
         </Text>
         <Grid mt="1rem" templateColumns="repeat(auto-fill, minmax(300px, 1fr))" gap="2rem">
           {
             productsFound.map(product => {
-              return <GridItem as={Link} to={product.path} key={product.id}>
-                <Flex align="center">
-                  <Image src={product.imageUrl} h="6rem" alt={product.title} />
-                  <Text
-                    fontSize="3xl"
-                    fontFamily="Lato"
-                  >{ product.title.toUpperCase() }</Text>
-                </Flex>
-              </GridItem>
+              return <SearchResult
+                id={product.id}
+                path={product.path}
+                title={product.title}
+                imageUrl={product.imageUrl}
+              />
             })
           }
         </Grid>
-        <Text
-          mt="2rem"
-          fontSize="md"
-          fontFamily="Lato"
-          fontWeight="700"
-        >
+        <Text {...blackBoldTextProps}>
           { productsFound.length } Searched result
         </Text>
       </Box>
