@@ -1,17 +1,6 @@
 import { useParams } from 'react-router-dom';
-import {
-  Box,
-  Flex,
-  Text,
-  Center,
-  Spacer,
-  useMediaQuery
-} from '@chakra-ui/react';
-import {
-  textProps,
-  notFoundProps,
-  descriptionProps
-} from './product-page.props';
+import { Box, Flex, Text, Center, Spacer, useMediaQuery } from '@chakra-ui/react';
+import { textProps, notFoundProps, descriptionProps } from './product-page.props';
 import CategoryLink from '../../components/category-link/category-link.component';
 import CardWrapper from '../../components/card-wrapper/card-wrapper.component';
 import { useSelector } from 'react-redux';

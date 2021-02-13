@@ -1,12 +1,4 @@
-import {
-  Flex,
-  Text,
-  Stack,
-  StackDivider,
-  Divider,
-  Spacer,
-  useMediaQuery
-} from '@chakra-ui/react';
+import { Flex, Text, Stack, StackDivider, Divider, Spacer, useMediaQuery } from '@chakra-ui/react';
 import { textProps } from './basket.props';
 import { useSelector } from 'react-redux';
 import BasketContainer from '../../components/basket-container/basket-container.component';

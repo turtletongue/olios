@@ -1,19 +1,5 @@
-import {
-  Center,
-  Box,
-  Flex,
-  Text,
-  Spacer,
-  Grid,
-  useMediaQuery
-} from '@chakra-ui/react';
-import {
-  containerProps,
-  textProps,
-  gridProps,
-  bottomTextProps,
-  notFoundProps
-} from './category-page.props';
+import { Center, Box, Flex, Text, Spacer, Grid, useMediaQuery } from '@chakra-ui/react';
+import { containerProps, textProps, gridProps, bottomTextProps, notFoundProps } from './category-page.props';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories } from '../../redux/categories/categories.actions';

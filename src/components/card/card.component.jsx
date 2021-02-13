@@ -1,10 +1,4 @@
-import {
-  GridItem,
-  Center,
-  Box,
-  Image,
-  Text
-} from '@chakra-ui/react';
+import { GridItem, Center, Box, Image, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { textProps } from './card.props';
 

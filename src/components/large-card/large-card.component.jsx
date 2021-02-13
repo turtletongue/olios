@@ -1,11 +1,4 @@
-import {
-  GridItem,
-  Flex,
-  Center,
-  Image,
-  Text,
-  Box
-} from '@chakra-ui/react';
+import { GridItem, Flex, Center, Image, Text, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const LargeCard = ({ title, path, imageUrl, price, cols, size }) => {

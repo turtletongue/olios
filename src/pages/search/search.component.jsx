@@ -1,16 +1,5 @@
-import {
-  Box,
-  Text,
-  Input,
-  Center,
-  Grid,
-} from '@chakra-ui/react';
-import {
-  pageContainerProps,
-  searchInputProps,
-  littleTextProps,
-  blackBoldTextProps
-} from './search.props';
+import { Box, Text, Input, Center, Grid } from '@chakra-ui/react';
+import { pageContainerProps, searchInputProps, littleTextProps, blackBoldTextProps } from './search.props';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeInput } from '../../redux/search/search.actions';
 import SearchResult from '../../components/search-result/search-result.component';

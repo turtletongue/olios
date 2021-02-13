@@ -1,9 +1,4 @@
-import {
-  Flex,
-  Text,
-  Button,
-  useMediaQuery
-} from '@chakra-ui/react';
+import { Flex, Text, Button, useMediaQuery } from '@chakra-ui/react';
 import { withRouter } from 'react-router-dom';
 import FullscreenBackgroundImage from '../../components/fullscreen-background-image/fullscreen-background-image.component';
 import { backgroundTextProps, textProps, buttonProps } from './homepage.props';

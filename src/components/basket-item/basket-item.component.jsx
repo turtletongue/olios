@@ -1,11 +1,4 @@
-import {
-  Flex,
-  Image,
-  Spacer,
-  Text,
-  Icon,
-  useMediaQuery
-} from '@chakra-ui/react';
+import { Flex, Image, Spacer, Text, Icon, useMediaQuery } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { boldTextProps, quantityProps, iconProps } from './basket-item.props';
 import { AiOutlineClose, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
