@@ -17,23 +17,13 @@ export const logoProps = {
   cursor: "pointer"
 };
 
-export const homeIconProps = {
-  w: "1rem",
-  src: "https://i.ibb.co/9sL2HHN/Home.png",
-  alt: "home",
-  cursor: "pointer"
-}
-
-export const basketIconProps = {
-  w: "1.1rem",
-  src: "https://i.ibb.co/3M9S617/Basket.png",
-  alt: "basket",
-  cursor: "pointer"
-};
-
-export const searchIconProps = {
-  w: "1rem",
-  src: "https://i.ibb.co/rvzBzZT/Search.png",
-  alt: "search",
-  cursor: "pointer"
+export const iconProps = {
+  w: 6,
+  h: 6,
+  cursor: "pointer",
+  sx: {
+    '&:hover': {
+      color: '#3182ce'
+    }
+  }
 };

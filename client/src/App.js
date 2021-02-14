@@ -18,16 +18,16 @@ const App = () => {
           <Route exact path="/">
             <Homepage />
           </Route>
-          <Route path="/search">
+          <Route exact path="/search">
             <Search />
           </Route>
-          <Route path="/basket">
+          <Route exact path="/basket">
             <Basket />
           </Route>
           <Route exact path="/:categoryPath">
             <CategoryPage />
           </Route>
-          <Route path="/:categoryPath/:productId">
+          <Route exact path="/:categoryPath/:productId">
             <ProductPage />
           </Route>
         </Switch>

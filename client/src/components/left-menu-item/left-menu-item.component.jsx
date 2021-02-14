@@ -1,10 +1,10 @@
-import { Image } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-const LeftMenuItem = ({ to, ...otherProps }) => {
+const LeftMenuItem = ({ to, icon, ...otherProps }) => {
   return (
     <Link to={to}>
-      <Image {...otherProps} />
+      <Icon as={icon} {...otherProps} />
     </Link>
   );
 }
