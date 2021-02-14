@@ -1,9 +1,16 @@
-import { Center, Box, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import { Center, Box, FormControl, FormLabel, Input, Button, useMediaQuery } from '@chakra-ui/react';
 
 const SignIn = () => {
+  const [isLessThan850] = useMediaQuery("(max-width: 850px)");
   return (
     <Center bgColor="#f1f1f1" h="100vh">
-      <Center bgColor="white" h="60%" w="45%" borderRadius="25px">
+      <Center
+        bgColor="white"
+        h="60%"
+        w={isLessThan850 ? "75%" : "45%"}
+        ml={isLessThan850 ? "3.5rem": "0"}
+        borderRadius="25px"
+      >
         <Box w="70%">
           <FormControl id="email" mb="1rem">
             <FormLabel>Email address</FormLabel>
