@@ -9,6 +9,6 @@ router.get('/products', productsControllers.getProductsByCriteria);
 
 router.delete('/products/:productId', productsControllers.deleteProduct);
 
-router.put('/products/:productId', productsControllers.editProduct)
+router.put('/products/:productId', productsControllers.editProduct);
 
 module.exports = router;

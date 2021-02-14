@@ -14,6 +14,7 @@ const port = process.env.PORT || 5000;
 const paymentRoutes = require('./routes/payment');
 const categoriesRoutes = require('./routes/categories');
 const productsRoutes = require('./routes/products');
+const authRoutes = require('./routes/auth');
 
 app.use(compression());
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(paymentRoutes);
 app.use(categoriesRoutes);
 app.use(productsRoutes);
+app.use(authRoutes);
 
 Product.belongsTo(Category, {constraints: true, onDelete: 'CASCADE' });
 Category.hasMany(Product);

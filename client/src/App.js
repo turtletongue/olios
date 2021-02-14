@@ -7,6 +7,7 @@ import Fonts from './components/fonts/fonts.component';
 import ProductPage from './pages/product-page/product-page.component';
 import Search from './pages/search/search.component';
 import Basket from './pages/basket/basket.component';
+import SignIn from './pages/signin/signin.component';
 
 const App = () => {
   return (
@@ -18,16 +19,19 @@ const App = () => {
           <Route exact path="/">
             <Homepage />
           </Route>
-          <Route exact path="/search">
+          <Route path="/search">
             <Search />
           </Route>
-          <Route exact path="/basket">
+          <Route path="/basket">
             <Basket />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
           </Route>
           <Route exact path="/:categoryPath">
             <CategoryPage />
           </Route>
-          <Route exact path="/:categoryPath/:productId">
+          <Route path="/:categoryPath/:productId">
             <ProductPage />
           </Route>
         </Switch>
