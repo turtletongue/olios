@@ -2,12 +2,35 @@ import {
   FETCH_CATEGORIES_SUCCESS,
   FETCH_CATEGORIES_FAILURE,
   FETCH_CATEGORY_PRODUCTS_SUCCESS,
-  FETCH_CATEGORY_PRODUCTS_FAILURE
+  FETCH_CATEGORY_PRODUCTS_FAILURE,
 } from './categories.constants';
 
 const initialState = {
-  currentCategories: [
-    // livingRoom: {
+  currentCategories: [],
+  categoryProducts: [],
+  errorMessage: null
+}
+
+const categoriesReducer = (state=initialState, action={}) => {
+  switch(action.type) {
+    case FETCH_CATEGORIES_SUCCESS:
+      return { ...state, currentCategories: action.payload };
+    case FETCH_CATEGORY_PRODUCTS_SUCCESS:
+      return { ...state, categoryProducts: action.payload };
+    case FETCH_CATEGORIES_FAILURE:
+    case FETCH_CATEGORY_PRODUCTS_FAILURE:
+      return { ...state, errorMessage: action.payload };
+    default:
+      return state;
+  }
+}
+
+export default categoriesReducer;
+
+
+// Testing Data
+
+// livingRoom: {
     //   id: 1,
     //   name: 'Living Room',
     //   pathName: 'living-room',
@@ -98,23 +121,3 @@ const initialState = {
     //   imageUrl: 'https://i.ibb.co/q02f2p9/123.png',
     //   products: []
     // }
-  ],
-  categoryProducts: [],
-  errorMessage: null
-}
-
-const categoriesReducer = (state=initialState, action={}) => {
-  switch(action.type) {
-    case FETCH_CATEGORIES_SUCCESS:
-      return { ...state, currentCategories: action.payload };
-    case FETCH_CATEGORY_PRODUCTS_SUCCESS:
-      return { ...state, categoryProducts: action.payload };
-    case FETCH_CATEGORIES_FAILURE:
-    case FETCH_CATEGORY_PRODUCTS_FAILURE:
-      return { ...state, errorMessage: action.payload };
-    default:
-      return state;
-  }
-}
-
-export default categoriesReducer;

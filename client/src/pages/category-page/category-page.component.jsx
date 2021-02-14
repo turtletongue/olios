@@ -3,7 +3,7 @@ import { Center, Box, Flex, Text, Spacer, Grid, useMediaQuery } from '@chakra-ui
 import { containerProps, textProps, gridProps, bottomTextProps, notFoundProps } from './category-page.props';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { startFetchCategories, startFetchCategoryProducts } from '../../redux/categories/categories.actions';
+import { startFetchCategories, startFetchCategoryProducts, changeProductsOffset } from '../../redux/categories/categories.actions';
 import CardWrapper from '../../components/card-wrapper/card-wrapper.component';
 import CategoryLink from '../../components/category-link/category-link.component';
 
@@ -22,7 +22,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (category) {
-      dispatch(startFetchCategoryProducts(category.id));
+      dispatch(startFetchCategoryProducts(category.id, 5));
     }
   }, [category]);
 
@@ -58,7 +58,9 @@ const CategoryPage = () => {
               }
             </Grid>
             <Text
-              onClick={() => {}}
+              onClick={() => {
+                dispatch(startFetchCategoryProducts(category.id, products.length + 4));
+              }}
               sx={{
                 "&:hover": {
                   color: "#3182ce",

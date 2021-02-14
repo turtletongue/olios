@@ -28,10 +28,16 @@ export const fetchCategoriesFailure = (error) => ({
   payload: error.message
 });
 
-export const startFetchCategoryProducts = (categoryId) => {
+export const startFetchCategoryProducts = (categoryId, numberOfProducts) => {
   return async (dispatch) => {
     try {
-      const response = await fetch(`http://localhost:5000/categories/${categoryId}`);
+      const response = await fetch(`http://localhost:5000/categories/${categoryId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ numberOfProducts })
+      });
       const json = await response.json();
       const products = json.products;
       dispatch(fetchCategoryProductsSuccess(products));
