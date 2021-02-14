@@ -5,7 +5,7 @@ router.get('/products/:productId', productsControllers.getProduct);
 
 router.post('/products', productsControllers.postProduct);
 
-router.get('/products', productsControllers.getAllProducts);
+router.get('/products', productsControllers.getProductsByCriteria);
 
 router.delete('/products/:productId', productsControllers.deleteProduct);
 

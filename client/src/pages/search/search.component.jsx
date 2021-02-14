@@ -4,22 +4,17 @@ import { pageContainerProps, searchInputProps, littleTextProps, blackBoldTextPro
 import { useSelector, useDispatch } from 'react-redux';
 import { changeInput } from '../../redux/search/search.actions';
 import SearchResult from '../../components/search-result/search-result.component';
-import { startFetchAllProducts } from '../../redux/products/products.actions';
+import { startFetchProductByCriteria } from '../../redux/products/products.actions';
 
 const Search = () => {
   const dispatch = useDispatch();
-  
-  useEffect(() => {
-    dispatch(startFetchAllProducts());
-  }, [startFetchAllProducts]);
 
-  const products = useSelector(state => state.products.allProducts);
+  const foundedProducts = useSelector(state => state.products.allProducts);
   const input = useSelector(state => state.search.input);
-  const foundedProducts = products.filter(product => 
-    product.title.toLowerCase().includes(input.toLowerCase())
-    ||
-    product.productType.toLowerCase().includes(input.toLowerCase())
-  );
+  useEffect(() => {
+    dispatch(startFetchProductByCriteria(input));
+  }, [input]);
+
   return (
     <Center {...pageContainerProps}>
       <Box w="65%" h="75%">

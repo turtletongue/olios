@@ -1,3 +1,4 @@
+const Op = require('sequelize').Op;
 const Category = require('../models/category');
 const Product = require('../models/product');
 
@@ -34,10 +35,17 @@ exports.getProduct = async (req, res) => {
   }
 }
 
-exports.getAllProducts = async (req, res) => {
+exports.getProductsByCriteria = async (req, res) => {
+  const { q } = req.query;
   try {
+    if (q === '') return res.status(200).json({ message: 'Input is empty.', products: [] });
     const products = await Product.findAll();
-    res.status(200).json({ message: 'Success!', products });
+    const foundedProducts = products.filter(p =>
+      p.title.toLowerCase().includes(q.toLowerCase())
+      ||
+      p.productType.toLowerCase().includes(q.toLowerCase())
+    );
+    res.status(200).json({ message: 'Success!', products: foundedProducts });
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: 'Some error occured.' });
