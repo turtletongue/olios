@@ -12,6 +12,7 @@ import ProductPage from './pages/product-page/product-page.component';
 import Search from './pages/search/search.component';
 import Basket from './pages/basket/basket.component';
 import SignIn from './pages/signin/signin.component';
+import AdminPage from './pages/admin-page/admin-page.component';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ const App = () => {
           </Route>
           <Route path="/signin">
             <SignIn />
+          </Route>
+          <Route path="/admin">
+            <AdminPage />
           </Route>
           <Route exact path="/:categoryPath">
             <CategoryPage />

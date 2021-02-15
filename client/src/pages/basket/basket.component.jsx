@@ -1,8 +1,8 @@
 import { Flex, Text, Stack, StackDivider, Divider, Spacer, useMediaQuery } from '@chakra-ui/react';
 import { textProps } from './basket.props';
 import { useSelector } from 'react-redux';
-import BasketContainer from '../../components/basket-container/basket-container.component';
-import BasketTableTitle from '../../components/basket-table-title/basket-table-title.component';
+import GrayContainer from '../../components/gray-container/gray-container.component';
+import TableTitle from '../../components/table-title/table-title.component';
 import BasketItem from '../../components/basket-item/basket-item.component';
 import StripeButton from '../../components/stripe-button/stripe-button.component';
 
@@ -13,7 +13,7 @@ const Basket = () => {
     (acc, product) => acc + +product.price * product.quantity, 0
   );
   return (
-    <BasketContainer>
+    <GrayContainer>
       <Text fontSize="5xl" {...textProps}>
           BASKET
       </Text>
@@ -29,13 +29,13 @@ const Basket = () => {
           >IMAGE</Text>
         }
         <Spacer />
-        <BasketTableTitle>TITLE</BasketTableTitle>
+        <TableTitle>TITLE</TableTitle>
         <Spacer />
-        <BasketTableTitle>QUANTITY</BasketTableTitle>
+        <TableTitle>QUANTITY</TableTitle>
         <Spacer />
-        <BasketTableTitle>PRICE</BasketTableTitle>
+        <TableTitle>PRICE</TableTitle>
         <Spacer />
-        <BasketTableTitle>REMOVE</BasketTableTitle>
+        <TableTitle>REMOVE</TableTitle>
       </Flex>
       <Divider h="0.5rem" mb="1rem" />
       <Stack
@@ -48,7 +48,7 @@ const Basket = () => {
           })
         }
       </Stack>
-      <Flex align="center" mt="2rem">
+      <Flex align="center" mt="2rem" mb="2rem">
         <Text
           fontSize={isLessThan800 ? "xl" : "2xl"}
           w={isLessThan800 ? "50%" : "15%"}
@@ -57,7 +57,7 @@ const Basket = () => {
         <Spacer />
         <StripeButton price={totalPrice} />
       </Flex>
-    </BasketContainer>
+    </GrayContainer>
   );
 }
 

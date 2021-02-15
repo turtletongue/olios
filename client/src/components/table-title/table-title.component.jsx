@@ -1,6 +1,6 @@
 import { Text, useMediaQuery } from '@chakra-ui/react';
 
-const BasketTableTitle = ({ children }) => {
+const TableTitle = ({ children }) => {
   const [isLessThan800] = useMediaQuery("(max-width: 800px)");
   return (
     <Text
@@ -12,4 +12,4 @@ const BasketTableTitle = ({ children }) => {
   );
 };
 
-export default BasketTableTitle;
+export default TableTitle;
