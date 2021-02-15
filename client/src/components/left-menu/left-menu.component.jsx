@@ -2,6 +2,7 @@ import { Box, Flex, Spacer, Image } from '@chakra-ui/react';
 import { VscSignIn } from 'react-icons/vsc';
 import { AiOutlineHome, AiOutlineSearch } from 'react-icons/ai';
 import { BiBasket, BiLogOut } from 'react-icons/bi';
+import { RiAdminLine } from 'react-icons/ri';
 import LeftMenuItem from '../left-menu-item/left-menu-item.component';
 import { containerProps, logoProps, iconProps } from './left-menu.props';
 import { Link, useLocation } from 'react-router-dom';
@@ -19,7 +20,7 @@ const LeftMenu = ({ children }) => {
           <Link to="/">
             <Image {...logoProps} />
           </Link>
-          <Flex mt="4.5rem" h="9rem" direction="column">
+          <Flex mt="4.5rem" h={isLogged ? "12rem" : "9rem"} direction="column">
             <LeftMenuItem
               to="/"
               icon={AiOutlineHome}
@@ -40,6 +41,21 @@ const LeftMenu = ({ children }) => {
               color={location.pathname !== '/search' ? "#c1c1c1" : "#3182ce"}
               { ...iconProps }
             />
+            {
+              isLogged ? (
+                <>
+                  <Spacer />
+                  <LeftMenuItem
+                    to="/admin"
+                    as={RiAdminLine}
+                    color={location.pathname !== '/admin' ? "#c1c1c1" : "#3182ce"}
+                    { ...iconProps }
+                  />
+                </>
+              ) : (
+                <></>
+              )
+            }
           </Flex>
           <Spacer />
           {

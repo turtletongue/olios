@@ -38,9 +38,15 @@ const Search = () => {
             })
           }
         </Grid>
-        <Text {...blackBoldTextProps}>
-          { foundedProducts.length } Searched result
-        </Text>
+        {
+          foundedProducts.length > 0 ? (
+            <Text {...blackBoldTextProps}>
+              { foundedProducts.length } Searched result
+            </Text>
+          ) : (
+            <></>
+          )
+        }
       </Box>
     </Center>
   );
