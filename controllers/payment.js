@@ -11,7 +11,7 @@ exports.postPayment = (req, res) => {
       if (stripeErr) {
           res.status(500).send({ error: stripeErr });
       } else {
-          res.status(200).send({ success: stripeRes });
+          res.status(200).send({ data: stripeRes });
       }
   });
 }
