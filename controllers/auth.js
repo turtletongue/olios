@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const Admin = require('../models/admin');
 
 exports.login = async (req, res) => {
@@ -10,7 +12,10 @@ exports.login = async (req, res) => {
     }
     bcrypt.compare(password, admin.password, (err, isEqual) => {
       if (isEqual === true) {
-        res.status(200).json({ message: 'Logged In successfuly!' });
+        const token = jwt.sign({
+          email, adminId: admin.id
+        }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ message: 'Logged In successfuly!', token });
       } else {
         res.status(400).json({ message: 'Wrong email or password.' });
       }

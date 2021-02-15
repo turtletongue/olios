@@ -1,11 +1,20 @@
 import { Flex, Text, Button, useMediaQuery } from '@chakra-ui/react';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import FullscreenBackgroundImage from '../../components/fullscreen-background-image/fullscreen-background-image.component';
 import { backgroundTextProps, textProps, buttonProps } from './homepage.props';
+import CustomSpinner from '../../components/custom-spinner/custom-spinner';
 
-const Homepage = ({ history }) => {
+const Homepage = () => {
+  const history = useHistory();
+
+  const isLoading = useSelector(state => state.loading.isLoading);
   const [isLargerThan1064] = useMediaQuery("(min-width: 1064px)");
   const [isLargerThan340] = useMediaQuery("(min-width: 340px)");
+
+  if (isLoading) {
+    return <CustomSpinner />;
+  }
   return (
     <>
       <FullscreenBackgroundImage
@@ -45,4 +54,4 @@ const Homepage = ({ history }) => {
   );
 }
 
-export default withRouter(Homepage);
+export default Homepage;

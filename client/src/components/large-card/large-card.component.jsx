@@ -1,7 +1,7 @@
 import { GridItem, Flex, Center, Image, Text, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
-const LargeCard = ({ title, path, imageUrl, price, cols, size }) => {
+const LargeCard = ({ title, path, imageUrl, price, cols }) => {
   return (
     <GridItem
       colSpan={cols}
@@ -13,7 +13,7 @@ const LargeCard = ({ title, path, imageUrl, price, cols, size }) => {
           <Center>
             <Image
               src={imageUrl}
-              h={ (size === 'lg' || size === 'md') ? "12rem" : "6rem"}
+              h="10rem"
               w="auto"
               alt={title}
             />

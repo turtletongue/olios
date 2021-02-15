@@ -10,6 +10,7 @@ import CostGroup from '../../components/cost-group/cost-group.component';
 import ProductInformationContainer from '../../components/product-information-container/product-information-container.component';
 import ProductImageContainer from '../../components/product-image-container/product-image-container.component';
 import { startFetchCategoryProducts, startFetchCategories } from '../../redux/categories/categories.actions';
+import CustomSpinner from '../../components/custom-spinner/custom-spinner';
 
 const ProductPage = () => {
   const { categoryPath, productId } = useParams();
@@ -30,10 +31,14 @@ const ProductPage = () => {
     }
   }, [category]);
 
+  const isLoading = useSelector(state => state.loading.isLoading);
   const products = useSelector(state => state.categories.categoryProducts);
   const product = products.find(p => p.id === +productId);
   const [isLessThan850] = useMediaQuery("(max-width: 850px)");
 
+  if (isLoading) {
+    return <CustomSpinner />;
+  }
   return (
     <>
       {

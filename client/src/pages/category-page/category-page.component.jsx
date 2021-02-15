@@ -3,16 +3,13 @@ import { Center, Box, Flex, Text, Spacer, Grid, useMediaQuery } from '@chakra-ui
 import { containerProps, textProps, gridProps, bottomTextProps, notFoundProps } from './category-page.props';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { startFetchCategories, startFetchCategoryProducts, changeProductsOffset } from '../../redux/categories/categories.actions';
+import { startFetchCategoryProducts } from '../../redux/categories/categories.actions';
 import CardWrapper from '../../components/card-wrapper/card-wrapper.component';
 import CategoryLink from '../../components/category-link/category-link.component';
+import CustomSpinner from '../../components/custom-spinner/custom-spinner';
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(startFetchCategories());
-  }, [startFetchCategories]);
 
   const { categoryPath } = useParams();
   const category = useSelector(
@@ -22,12 +19,17 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (category) {
-      dispatch(startFetchCategoryProducts(category.id, 5));
+      dispatch(startFetchCategoryProducts(category.id, 4));
     }
   }, [category]);
 
+  const isLoading = useSelector(state => state.loading.isLoading);
   const products = useSelector(state => state.categories.categoryProducts);
   const [isLessThan800] = useMediaQuery("(max-width: 800px)");
+
+  if (isLoading) {
+    return <CustomSpinner />;
+  }
   return (
     <>
       {

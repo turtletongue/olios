@@ -19,10 +19,6 @@ const Product = sequelize.define('product', {
   oldPrice: {
     type: DataTypes.INTEGER
   },
-  size: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   cols: {
     type: DataTypes.INTEGER,
     allowNull: false

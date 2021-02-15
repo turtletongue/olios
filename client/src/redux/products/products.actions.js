@@ -15,7 +15,11 @@ export const startFetchProductByCriteria = (input) => {
       const response = await fetch(`http://localhost:5000/products?q=${input}`);
       const json = await response.json();
       const products = json.products;
-      dispatch(fetchProductByCriteriaSuccess(products));
+      if (products) {
+        dispatch(fetchProductByCriteriaSuccess(products));
+      } else {
+        dispatch(fetchProductByCriteriaFailure(new Error('Fetching products failed.')));
+      }
     } catch (error) {
       dispatch(fetchProductByCriteriaFailure(error));
     }

@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 
 const LeftMenuItem = ({ to, icon, ...otherProps }) => {
   return (
-    <Link to={to}>
-      <Icon as={icon} {...otherProps} />
-    </Link>
+    <>
+      {
+        to ? (
+          <Link to={to}>
+            <Icon as={icon} {...otherProps} />
+          </Link>
+        ) : (
+          <Icon as={icon} {...otherProps} />
+        )
+      }
+    </>
   );
 }
 

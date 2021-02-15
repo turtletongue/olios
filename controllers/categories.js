@@ -6,7 +6,7 @@ exports.postCategories = async (req, res) => {
     await Category.create({ name, path, imageUrl });
     res.status(200).json({ message: 'Success!' });
   } catch (error) {
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ message: 'An error occured.' });
   }
 }
 
@@ -15,7 +15,7 @@ exports.getCategories = async (req, res) => {
     const categories = await Category.findAll();
     res.status(200).json({ message: 'Success!', categories });
   } catch (error) {
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ message: 'An error occured.' });
   }
 }
 
@@ -27,8 +27,7 @@ exports.getCategoryProducts = async (req, res) => {
     const products = await category.getProducts({ limit: numberOfProducts });
     res.status(200).json({ message: 'Success!', products });
   } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ message: 'An error occured.' });
   }
 }
 
@@ -39,7 +38,7 @@ exports.deleteCategory = async (req, res) => {
     await category.destroy();
     res.status(200).json({ message: 'Success!' });
   } catch (error) {
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ message: 'An error occured.' });
   }
 }
 
@@ -54,6 +53,6 @@ exports.editCategory = async (req, res) => {
     await category.save();
     res.status(200).json({ message: 'Success!' });
   } catch (error) {
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ message: 'An error occured.' });
   }
 }

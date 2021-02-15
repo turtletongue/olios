@@ -5,16 +5,24 @@ import {
   FETCH_CATEGORY_PRODUCTS_FAILURE
 } from './categories.constants';
 
+import { startLoading, finishLoading } from '../loading/loading.actions';
+
 export const startFetchCategories = () => {
   return async (dispatch) => {
     try {
+      dispatch(startLoading());
       const response = await fetch('http://localhost:5000/categories');
       const json = await response.json();
       const categories = json.categories;
-      dispatch(fetchCategoriesSuccess(categories));
+      if (categories) {
+        dispatch(fetchCategoriesSuccess(categories));
+      } else {
+        dispatch(fetchCategoriesFailure(new Error('Fetching categories failed.')));
+      }
     } catch (error) {
       dispatch(fetchCategoriesFailure(error));
     }
+    dispatch(finishLoading());
   };
 }
 
@@ -31,6 +39,7 @@ export const fetchCategoriesFailure = (error) => ({
 export const startFetchCategoryProducts = (categoryId, numberOfProducts) => {
   return async (dispatch) => {
     try {
+      dispatch(startLoading());
       const response = await fetch(`http://localhost:5000/categories/${categoryId}`, {
         method: 'POST',
         headers: {
@@ -40,10 +49,15 @@ export const startFetchCategoryProducts = (categoryId, numberOfProducts) => {
       });
       const json = await response.json();
       const products = json.products;
-      dispatch(fetchCategoryProductsSuccess(products));
+      if (products) {
+        dispatch(fetchCategoryProductsSuccess(products));
+      } else {
+        dispatch(fetchCategoryProductsFailure(new Error('Fetching products failed.')));
+      }
     } catch (error) {
       dispatch(fetchCategoryProductsFailure(error));
     }
+    dispatch(finishLoading());
   };
 }
 
