@@ -32,6 +32,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
+    "react-use-disclosure": "^2.0.0",
     "sequelize": "^6.5.0",
     "stripe": "^8.135.0"
   }

@@ -1,37 +1,51 @@
-const Op = require('sequelize').Op;
+const jwt = require('jsonwebtoken');
 const Category = require('../models/category');
 const Product = require('../models/product');
 
 exports.postProduct = async (req, res) => {
-  const { categoryId, price, oldPrice, size, cols, title, imageUrl, path, description, productType } = req.body;
+  const { productData: {
+    categoryId,
+    price,
+    cols,
+    title,
+    imageUrl,
+    description,
+    productType
+  }, token } = req.body;
   try {
+    const isAuth = jwt.verify(token, process.env.JWT_SECRET);
+    if (!isAuth.email) {
+      return res.status(403).json({ error: 'Not allowed.' });
+    }
     const category = await Category.findByPk(categoryId);
-    await category.createProduct({
+    const product = await category.createProduct({
       productType,
       price,
-      oldPrice,
-      size,
       cols,
       title,
       imageUrl,
-      path,
       description
     });
+    product.path = `${category.path}/${product.id}`;
+    await product.save();
     res.status(200).json({ message: 'Success!' });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ error: 'Some error occured.' });
   }
 }
 
 exports.getProduct = async (req, res) => {
-  const { productId } = req.body;
+  const { productId } = req.params;
   try {
     const product = await Product.findByPk(productId);
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found.' });
+    }
     res.status(200).json({ message: 'Success!', product });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ error: 'Some error occured.' });
   }
 }
 
@@ -48,41 +62,58 @@ exports.getProductsByCriteria = async (req, res) => {
     res.status(200).json({ message: 'Success!', products: foundedProducts });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ error: 'Some error occured.' });
   }
 }
 
 exports.deleteProduct = async (req, res) => {
-  const { productId } = req.body;
+  const { productId, token } = req.body;
   try {
+    const isAuth = jwt.verify(token, process.env.JWT_SECRET);
+    if (!isAuth.email) {
+      return res.status(403).json({ error: 'Not allowed.' });
+    }
     const product = await Product.findByPk(productId);
     await product.destroy();
     res.status(200).json({ message: 'Success!' });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ error: 'Some error occured.' });
   }
 }
 
 exports.editProduct = async (req, res) => {
-  const { categoryId, price, oldPrice, size, cols, title, imageUrl, path, description, productType } = req.body;
+  const { productData: {
+    categoryId,
+    price,
+    oldPrice,
+    cols,
+    title,
+    imageUrl,
+    description,
+    productType
+  }, token } = req.body;
   const { productId } = req.params;
   try {
+    const isAuth = jwt.verify(token, process.env.JWT_SECRET);
+    if (!isAuth.email) {
+      return res.status(403).json({ error: 'Not allowed.' });
+    }
     const product = await Product.findByPk(productId);
     product.categoryId = categoryId;
     product.price = price;
     product.oldPrice = oldPrice;
-    product.size = size;
     product.cols = cols;
     product.title = title;
-    product.imageUrl = imageUrl;
-    product.path = path;
+    if (imageUrl) {
+      product.imageUrl = imageUrl;
+    }
     product.description = description;
     product.productType = productType;
     await product.save();
     res.status(200).json({ message: 'Success!' });
   } catch (error) {
     console.log(error);
-    res.status(400).json({ message: 'Some error occured.' });
+    res.status(400).json({ error: 'Some error occured.' });
   }
 }

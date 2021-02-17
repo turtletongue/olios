@@ -32,8 +32,7 @@ const Product = sequelize.define('product', {
     allowNull: false
   },
   path: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   description: {
     type: DataTypes.TEXT,
