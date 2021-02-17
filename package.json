@@ -30,9 +30,9 @@
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
+    "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
-    "react-use-disclosure": "^2.0.0",
     "sequelize": "^6.5.0",
     "stripe": "^8.135.0"
   }

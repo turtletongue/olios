@@ -1,21 +1,33 @@
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
+
 const Category = require('../models/category');
 const Product = require('../models/product');
 
-exports.postProduct = async (req, res) => {
-  const { productData: {
-    categoryId,
-    price,
-    cols,
-    title,
-    imageUrl,
-    description,
-    productType
-  }, token } = req.body;
+exports.postProduct = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const error = new Error();
+      error.statusCode = 400;
+      error.msg = 'Validation failed.';
+      next(error);
+    }
+    const { productData: {
+      categoryId,
+      price,
+      cols,
+      title,
+      imageUrl,
+      description,
+      productType
+    }, token } = req.body;
     const isAuth = jwt.verify(token, process.env.JWT_SECRET);
     if (!isAuth.email) {
-      return res.status(403).json({ error: 'Not allowed.' });
+      const error = new Error();
+      error.statusCode = 403;
+      error.msg = 'Not allowed';
+      next(error);
     }
     const category = await Category.findByPk(categoryId);
     const product = await category.createProduct({
@@ -29,29 +41,35 @@ exports.postProduct = async (req, res) => {
     product.path = `${category.path}/${product.id}`;
     await product.save();
     res.status(200).json({ message: 'Success!' });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: 'Some error occured.' });
+  } catch (err) {
+    console.log(err);
+    const error = new Error();
+    error.statusCode = 400;
+    next(error);
   }
 }
 
-exports.getProduct = async (req, res) => {
-  const { productId } = req.params;
+exports.getProduct = async (req, res, next) => {
   try {
+    const { productId } = req.params;
     const product = await Product.findByPk(productId);
     if (!product) {
-      return res.status(404).json({ error: 'Product not found.' });
+      const error = new Error();
+      error.statusCode = 404;
+      error.msg = 'Product not found.';
+      next(error);
     }
     res.status(200).json({ message: 'Success!', product });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: 'Some error occured.' });
+  } catch (err) {
+    const error = new Error();
+    error.statusCode = 400;
+    next(error);
   }
 }
 
-exports.getProductsByCriteria = async (req, res) => {
-  const { q } = req.query;
+exports.getProductsByCriteria = async (req, res, next) => {
   try {
+    const { q } = req.query;
     if (q === '') return res.status(200).json({ message: 'Input is empty.', products: [] });
     const products = await Product.findAll();
     const foundedProducts = products.filter(p =>
@@ -60,44 +78,59 @@ exports.getProductsByCriteria = async (req, res) => {
       p.productType.toLowerCase().includes(q.toLowerCase())
     );
     res.status(200).json({ message: 'Success!', products: foundedProducts });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: 'Some error occured.' });
+  } catch (err) {
+    const error = new Error();
+    error.statusCode = 400;
+    next(error);
   }
 }
 
-exports.deleteProduct = async (req, res) => {
-  const { productId, token } = req.body;
+exports.deleteProduct = async (req, res, next) => {
   try {
+    const { productId, token } = req.body;
     const isAuth = jwt.verify(token, process.env.JWT_SECRET);
     if (!isAuth.email) {
-      return res.status(403).json({ error: 'Not allowed.' });
+      const error = new Error();
+      error.statusCode = 403;
+      error.msg = 'Not allowed';
+      next(error);
     }
     const product = await Product.findByPk(productId);
     await product.destroy();
     res.status(200).json({ message: 'Success!' });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: 'Some error occured.' });
+  } catch (err) {
+    const error = new Error();
+    error.statusCode = 400;
+    next(error);
   }
 }
 
-exports.editProduct = async (req, res) => {
-  const { productData: {
-    categoryId,
-    price,
-    oldPrice,
-    cols,
-    title,
-    imageUrl,
-    description,
-    productType
-  }, token } = req.body;
-  const { productId } = req.params;
+exports.editProduct = async (req, res, next) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const error = new Error();
+      error.statusCode = 400;
+      error.msg = 'Validation failed.';
+      next(error);
+    }
+    const { productData: {
+      categoryId,
+      price,
+      oldPrice,
+      cols,
+      title,
+      imageUrl,
+      description,
+      productType
+    }, token } = req.body;
+    const { productId } = req.params;
     const isAuth = jwt.verify(token, process.env.JWT_SECRET);
     if (!isAuth.email) {
-      return res.status(403).json({ error: 'Not allowed.' });
+      const error = new Error();
+      error.statusCode = 403;
+      error.msg = 'Not allowed';
+      next(error);
     }
     const product = await Product.findByPk(productId);
     product.categoryId = categoryId;
@@ -112,8 +145,9 @@ exports.editProduct = async (req, res) => {
     product.productType = productType;
     await product.save();
     res.status(200).json({ message: 'Success!' });
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ error: 'Some error occured.' });
+  } catch (err) {
+    const error = new Error();
+    error.statusCode = 400;
+    next(error);
   }
 }

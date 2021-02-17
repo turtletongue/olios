@@ -13,11 +13,11 @@ const Product = sequelize.define('product', {
     allowNull: false
   },
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DOUBLE,
     allowNull: false
   },
   oldPrice: {
-    type: DataTypes.INTEGER
+    type: DataTypes.DOUBLE
   },
   cols: {
     type: DataTypes.INTEGER,

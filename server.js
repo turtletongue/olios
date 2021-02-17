@@ -40,7 +40,11 @@ app.use(categoriesRoutes);
 app.use(productsRoutes);
 app.use(authRoutes);
 
-Product.belongsTo(Category, {constraints: true, onDelete: 'CASCADE' });
+app.use((error, req, res, next) => {
+  return res.status(error.statusCode || 500).json({ error: error.msg || "An error occured." });
+});
+
+Product.belongsTo(Category, { constraints: true, onDelete: 'CASCADE' });
 Category.hasMany(Product);
 
 sequelize.sync()

@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
   try {
+    const { email, password } = req.body;
     const admin = await Admin.findOne({ where: { email } });
     if (!admin) {
       return res.status(400).json({ message: 'Wrong email or password.' });
@@ -20,9 +20,10 @@ exports.login = async (req, res) => {
         res.status(400).json({ message: 'Wrong email or password.' });
       }
     })
-  } catch (error) {
-    console.log(error);
-    res.status(400).json({ message: 'An error occured.' });
+  } catch (err) {
+    const error = new Error();
+    error.statusCode = 400;
+    next(error);
   }
 }
 
